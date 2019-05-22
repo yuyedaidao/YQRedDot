@@ -17,23 +17,19 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.description      = '畅媒未来版公共模块-YQRedDot'
+  s.description      = 'Swift版小红点-YQRedDot'
 
-  s.homepage         = 'https://github.com/iqilu/YQRedDot'
+  s.homepage         = 'https://github.com/yuyedaidao/YQRedDot'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'wyqpadding@gmail.com' => 'wyqpadding@gmail.com' }
-  s.source           = { :git => 'https://github.com/iqilu/YQRedDot.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/yuyedaidao/YQRedDot.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
 
   s.source_files = 'YQRedDot/Classes/**/*'
-  
-  s.resource_bundles = {
-    'YQRedDot' => ['YQRedDot/Assets/*.png']
-  }
-
+  s.swift_version = '4.2'
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'

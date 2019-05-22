@@ -1,0 +1,16 @@
+PODS:
+  - YQRedDot (0.1.0)
+
+DEPENDENCIES:
+  - YQRedDot (from `../`)
+
+EXTERNAL SOURCES:
+  YQRedDot:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  YQRedDot: d402245e2a25b9ae53e0786d50bf4df6357c5285
+
+PODFILE CHECKSUM: e5bedfdf5f79d4554be6d7f72bad5cbc3b9810e4
+
+COCOAPODS: 1.7.0.beta.1

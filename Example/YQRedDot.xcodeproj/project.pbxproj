@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		555CB107229523E100A94A69 /* YQRedDot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555CB106229523E100A94A69 /* YQRedDot.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -29,8 +30,11 @@
 
 /* Begin PBXFileReference section */
 		0C4ED07E5F1A71DCD062CEEA /* Pods-YQRedDot_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YQRedDot_Example.debug.xcconfig"; path = "Target Support Files/Pods-YQRedDot_Example/Pods-YQRedDot_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		26E7E1853DDA6FA3953AF894 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		2B734D44D6F6DE7B18C7DDD5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		26E7E1853DDA6FA3953AF894 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		2B734D44D6F6DE7B18C7DDD5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		555CB0FF229522DF00A94A69 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		555CB102229522DF00A94A69 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		555CB106229523E100A94A69 /* YQRedDot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YQRedDot.swift; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* YQRedDot_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YQRedDot_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,7 +49,7 @@
 		8BEB49B180CAE487CC72A152 /* Pods_YQRedDot_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YQRedDot_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B93D43EA0951E60947444F12 /* Pods-YQRedDot_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YQRedDot_Example.release.xcconfig"; path = "Target Support Files/Pods-YQRedDot_Example/Pods-YQRedDot_Example.release.xcconfig"; sourceTree = "<group>"; };
 		C82B77B22C31E72336759719 /* Pods-YQRedDot_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YQRedDot_Tests.release.xcconfig"; path = "Target Support Files/Pods-YQRedDot_Tests/Pods-YQRedDot_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		F25B1C3BDF2D7F16175F0A3C /* YQRedDot.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = YQRedDot.podspec; path = ../YQRedDot.podspec; sourceTree = "<group>"; };
+		F25B1C3BDF2D7F16175F0A3C /* YQRedDot.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = YQRedDot.podspec; path = ../YQRedDot.podspec; sourceTree = "<group>"; };
 		F46A0196ABDB8DECD7330D83 /* Pods_YQRedDot_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YQRedDot_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -77,13 +81,40 @@
 				637231F0D08425EAD41554B4 /* Pods-YQRedDot_Tests.debug.xcconfig */,
 				C82B77B22C31E72336759719 /* Pods-YQRedDot_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		555CB0FD229522DF00A94A69 /* YQRedDot */ = {
+			isa = PBXGroup;
+			children = (
+				555CB0FE229522DF00A94A69 /* Classes */,
+				555CB101229522DF00A94A69 /* Assets */,
+			);
+			name = YQRedDot;
+			path = ../YQRedDot;
+			sourceTree = "<group>";
+		};
+		555CB0FE229522DF00A94A69 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				555CB0FF229522DF00A94A69 /* .gitkeep */,
+				555CB106229523E100A94A69 /* YQRedDot.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		555CB101229522DF00A94A69 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				555CB102229522DF00A94A69 /* .gitkeep */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				555CB0FD229522DF00A94A69 /* YQRedDot */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for YQRedDot */,
 				607FACE81AFB9204008FA782 /* Tests */,
@@ -213,10 +244,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = QXPHWM9EW2;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = QXPHWM9EW2;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -227,6 +260,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -332,6 +366,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				555CB107229523E100A94A69 /* YQRedDot.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
