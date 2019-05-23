@@ -26,7 +26,7 @@ public enum YQRedDotType {
                 fatalError("当前类型不是number,不允许设置value")
             }
             let text = self.value.text()
-            size = text.size(with: font)
+            size = text.size(with: font, insets: contentInsets)
             self.text = text
             setNeedsDisplay()
         }
@@ -34,9 +34,11 @@ public enum YQRedDotType {
     public var type: YQRedDotType = .number {
         didSet {
             if self.type == .number {
-                size = text.size(with: font)
+                size = text.size(with: font, insets: contentInsets)
+                self.textLabel.isHidden = false
             } else {
                 size = CGSize(width: 8, height: 8)
+                self.textLabel.isHidden = true
             }
             setNeedsDisplay()
         }
@@ -46,17 +48,15 @@ public enum YQRedDotType {
             guard type == .number else {
                 return
             }
-            size = text.size(with: self.font)
+            size = text.size(with: self.font, insets: contentInsets)
+            self.textLabel.font = self.font
             setNeedsDisplay()
         }
     }
     
     @IBInspectable public var valueColor: UIColor = UIColor.white {
         didSet {
-            guard type == .number else {
-                return
-            }
-            setNeedsDisplay()
+            self.textLabel.textColor = self.valueColor
         }
     }
     
@@ -75,12 +75,13 @@ public enum YQRedDotType {
     }
     private var text: String = "" {
         didSet {
-            guard type == .number else {
+            guard type == .number, self.text != oldValue else {
                 return
             }
-            setNeedsDisplay()
+            textLabel.text = self.text
         }
     }
+    private let textLabel = UILabel()
     private lazy var style: NSParagraphStyle = {
         var style = NSMutableParagraphStyle()
         style.alignment = NSTextAlignment.center
@@ -89,37 +90,49 @@ public enum YQRedDotType {
     
     init() {
         super.init(frame:CGRect.zero)
-        backgroundColor = UIColor.clear
+        commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    func commonInit() {
         backgroundColor = UIColor.clear
+        textLabel.text = text
+        textLabel.font = font
+        textLabel.textColor = valueColor
+        textLabel.textAlignment = NSTextAlignment.center
+        addSubview(textLabel)
+    }
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        self.textLabel.sizeToFit()
+        self.textLabel.center = CGPoint(x: (bounds.width - contentInsets.left - contentInsets.right) / 2 + contentInsets.left, y: bounds.height / 2)
     }
     
     override public func draw(_ rect: CGRect) {
         guard let context = UIGraphicsGetCurrentContext() else {return}
         context.setFillColor(UIColor.red.cgColor)
-        if size.width == size.height {
-            let width = min(bounds.width, bounds.height)
-            let x = (bounds.width - width) / 2
-            let y = (bounds.height - width) / 2
-            context.fillEllipse(in: CGRect(x: x, y: y, width: width, height: width))
+        if size.width <= size.height {
+            context.fillEllipse(in: bounds)
         } else {
-            let radius = bounds.height / 2
+            let radius = size.height / 2
             context.addArc(center: CGPoint(x: radius, y: radius), radius: radius, startAngle: CGFloat.pi/2, endAngle: CGFloat.pi / 2 * 3, clockwise: false)
             context.addLine(to: CGPoint(x: bounds.width - radius, y: 0))
             context.addArc(center: CGPoint(x: bounds.width - radius, y: radius), radius: radius, startAngle: CGFloat.pi / 2 * 3, endAngle: CGFloat.pi / 2, clockwise: false)
             context.fillPath()
         }
-        guard type == .number else {return}
-        let text = self.text as NSString
-        let drawRect = bounds.inset(by: contentInsets)
-        text.draw(in: drawRect, withAttributes: [NSAttributedString.Key.paragraphStyle: style, NSAttributedString.Key.foregroundColor: valueColor, NSAttributedString.Key.font: font])
+//        guard type == .number else {return}
+//        let text = self.text as NSString
+//        let drawRect = bounds.inset(by: contentInsets)
+//        text.draw(in: drawRect, withAttributes: [NSAttributedString.Key.foregroundColor: valueColor, NSAttributedString.Key.font: font])
     }
     
     override public var intrinsicContentSize: CGSize {
-        return CGSize(width: size.width + contentInsets.left + contentInsets.right, height: size.height + contentInsets.top + contentInsets.bottom)
+        return size
     }
 
 }
@@ -225,13 +238,14 @@ extension Int {
 }
 
 extension String {
-    fileprivate func size(with font: UIFont) -> CGSize {
+    fileprivate func size(with font: UIFont, insets: UIEdgeInsets = UIEdgeInsets.zero) -> CGSize {
         guard !isEmpty else {
             return CGSize.zero
         }
         let string = self as NSString
         var size = string.size(withAttributes: [NSAttributedString.Key.font : font])
-        if size.height > size.width {
+        size = CGSize(width: size.width + insets.left + insets.right, height: size.height + insets.top + insets.bottom)
+        if size.width < size.height {
             size.width = size.height
         }
         return size
