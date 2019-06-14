@@ -17,6 +17,14 @@ public enum YQRedDotType {
     case solid
 }
 
+public class YQRedDotConfigure {
+    public static let shared = YQRedDotConfigure()
+    private init() {}
+    var valueColor: UIColor = UIColor.white
+    var color: UIColor = UIColor.red
+    var offset: CGPoint = CGPoint.zero
+}
+
 @IBDesignable public class YQRedDot: UIView {
     
     /// 红点上显示的数字，只对number型有效
@@ -54,7 +62,7 @@ public enum YQRedDotType {
         }
     }
     
-    @IBInspectable public var valueColor: UIColor = UIColor.white {
+    @IBInspectable public var valueColor: UIColor = YQRedDotConfigure.shared.color {
         didSet {
             self.textLabel.textColor = self.valueColor
         }
@@ -145,7 +153,7 @@ public extension UIView {
     /// 展示带数字的小红点
     /// 数字如果小于等于0就隐藏
     /// - Parameter value: 数字
-    func showBadge(_ value: Int, offset: CGPoint = CGPoint.zero) {
+    func showBadge(_ value: Int) {
         guard value > 0 else {
             hideBadge()
             return
@@ -153,6 +161,7 @@ public extension UIView {
         if let view = viewWithTag(YQRedDotNumberTag) as? YQRedDot {
             view.value = value
         } else {
+            let offset = YQRedDotConfigure.shared.offset
             let view = YQRedDot()
             view.value = value
             view.tag = YQRedDotNumberTag
@@ -175,10 +184,11 @@ public extension UIView {
     }
     
     /// 显示实心红点
-    func showRedDot(_ offset: CGPoint = CGPoint.zero) {
+    func showRedDot() {
         if let view = viewWithTag(YQRedDotSolidTag) as? YQRedDot {
             view.type = .solid
         } else {
+            let offset = YQRedDotConfigure.shared.offset
             let view = YQRedDot()
             view.type = .solid
             view.tag = YQRedDotSolidTag
