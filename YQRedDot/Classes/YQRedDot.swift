@@ -20,9 +20,9 @@ public enum YQRedDotType {
 public class YQRedDotConfigure {
     public static let shared = YQRedDotConfigure()
     private init() {}
-    var valueColor: UIColor = UIColor.white
-    var color: UIColor = UIColor.red
-    var offset: CGPoint = CGPoint.zero
+    public var valueColor: UIColor = UIColor.white
+    public var color: UIColor = UIColor.red
+    public var offset: CGPoint = CGPoint.zero
 }
 
 @IBDesignable public class YQRedDot: UIView {
