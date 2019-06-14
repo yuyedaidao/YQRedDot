@@ -140,12 +140,12 @@ public enum YQRedDotType {
 private let YQRedDotNumberTag: Int = 235813
 private let YQRedDotSolidTag: Int = 1235813
 
-extension UIView {
+public extension UIView {
     
     /// 展示带数字的小红点
     /// 数字如果小于等于0就隐藏
     /// - Parameter value: 数字
-    func showBadge(_ value: Int) {
+    func showBadge(_ value: Int, offset: CGPoint = CGPoint.zero) {
         guard value > 0 else {
             hideBadge()
             return
@@ -158,8 +158,12 @@ extension UIView {
             view.tag = YQRedDotNumberTag
             view.translatesAutoresizingMaskIntoConstraints = false
             addSubview(view)
-            view.centerXAnchor.constraint(equalTo: trailingAnchor).isActive = true
-            view.centerYAnchor.constraint(equalTo: topAnchor).isActive = true
+            var constraint = view.centerXAnchor.constraint(equalTo: trailingAnchor)
+            constraint.constant = offset.x
+            constraint.isActive = true
+            constraint = view.centerYAnchor.constraint(equalTo: topAnchor)
+            constraint.constant = offset.y
+            constraint.isActive = true
         }
     }
     
@@ -171,7 +175,7 @@ extension UIView {
     }
     
     /// 显示实心红点
-    func showRedDot() {
+    func showRedDot(_ offset: CGPoint = CGPoint.zero) {
         if let view = viewWithTag(YQRedDotSolidTag) as? YQRedDot {
             view.type = .solid
         } else {
@@ -180,8 +184,12 @@ extension UIView {
             view.tag = YQRedDotSolidTag
             view.translatesAutoresizingMaskIntoConstraints = false
             addSubview(view)
-            view.centerXAnchor.constraint(equalTo: trailingAnchor).isActive = true
-            view.centerYAnchor.constraint(equalTo: topAnchor).isActive = true
+            var constraint = view.centerXAnchor.constraint(equalTo: trailingAnchor)
+            constraint.constant = offset.x
+            constraint.isActive = true
+            constraint = view.centerYAnchor.constraint(equalTo: topAnchor)
+            constraint.constant = offset.y
+            constraint.isActive = true
         }
     }
     
@@ -192,7 +200,7 @@ extension UIView {
         }
     }
     
-    public var badge: Int {
+    var badge: Int {
         set {
             showBadge(newValue)
         }
@@ -204,7 +212,7 @@ extension UIView {
         }
     }
     
-    public var redDot: Bool {
+    var redDot: Bool {
         set {
             if newValue {
                 showRedDot()
