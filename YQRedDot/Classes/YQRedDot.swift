@@ -62,9 +62,17 @@ public class YQRedDotConfigure {
         }
     }
     
-    @IBInspectable public var valueColor: UIColor = YQRedDotConfigure.shared.color {
+    @IBInspectable public var valueColor: UIColor = YQRedDotConfigure.shared.valueColor {
         didSet {
             self.textLabel.textColor = self.valueColor
+        }
+    }
+    
+    @IBInspectable public var color: UIColor = YQRedDotConfigure.shared.color {
+        didSet {
+            if self.color != oldValue {
+                setNeedsDisplay()
+            }
         }
     }
     
@@ -158,12 +166,12 @@ public extension UIView {
             hideBadge()
             return
         }
+        let redDot: YQRedDot
         if let view = viewWithTag(YQRedDotNumberTag) as? YQRedDot {
-            view.value = value
+            redDot = view
         } else {
             let offset = YQRedDotConfigure.shared.offset
             let view = YQRedDot()
-            view.value = value
             view.tag = YQRedDotNumberTag
             view.translatesAutoresizingMaskIntoConstraints = false
             addSubview(view)
@@ -173,7 +181,12 @@ public extension UIView {
             constraint = view.centerYAnchor.constraint(equalTo: topAnchor)
             constraint.constant = offset.y
             constraint.isActive = true
+            redDot = view
         }
+        
+        redDot.valueColor = YQRedDotConfigure.shared.valueColor
+        redDot.color = YQRedDotConfigure.shared.color
+        redDot.value = value
     }
     
     /// 隐藏小红点
@@ -185,8 +198,10 @@ public extension UIView {
     
     /// 显示实心红点
     func showRedDot() {
+        let redDot: YQRedDot
         if let view = viewWithTag(YQRedDotSolidTag) as? YQRedDot {
             view.type = .solid
+            redDot = view
         } else {
             let offset = YQRedDotConfigure.shared.offset
             let view = YQRedDot()
@@ -200,7 +215,9 @@ public extension UIView {
             constraint = view.centerYAnchor.constraint(equalTo: topAnchor)
             constraint.constant = offset.y
             constraint.isActive = true
+            redDot = view
         }
+        redDot.color = YQRedDotConfigure.shared.color
     }
     
     /// 隐藏实心红点
