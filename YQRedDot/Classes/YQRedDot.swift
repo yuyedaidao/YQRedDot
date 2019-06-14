@@ -221,7 +221,7 @@ public extension UIView {
             }
         }
         get {
-            if let view = viewWithTag(YQRedDotSolidTag) as? YQRedDot {
+            if let _ = viewWithTag(YQRedDotSolidTag) as? YQRedDot {
                 return true
             }
             return false
