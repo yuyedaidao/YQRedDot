@@ -95,6 +95,7 @@ public class YQRedDotConfigure {
                 return
             }
             textLabel.text = self.text
+            textLabel.sizeToFit()
         }
     }
     private let textLabel = UILabel()
