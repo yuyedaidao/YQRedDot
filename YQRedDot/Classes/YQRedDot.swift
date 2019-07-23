@@ -132,7 +132,7 @@ public class YQRedDotConfigure {
     
     override public func draw(_ rect: CGRect) {
         guard let context = UIGraphicsGetCurrentContext() else {return}
-        context.setFillColor(UIColor.red.cgColor)
+        color.setFill()
         if size.width <= size.height {
             context.fillEllipse(in: bounds)
         } else {
