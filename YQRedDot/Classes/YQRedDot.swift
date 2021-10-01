@@ -142,16 +142,15 @@ public class YQRedDotConfigure {
             context.addArc(center: CGPoint(x: bounds.width - radius, y: radius), radius: radius, startAngle: CGFloat.pi / 2 * 3, endAngle: CGFloat.pi / 2, clockwise: false)
             context.fillPath()
         }
-//        guard type == .number else {return}
-//        let text = self.text as NSString
-//        let drawRect = bounds.inset(by: contentInsets)
-//        text.draw(in: drawRect, withAttributes: [NSAttributedString.Key.foregroundColor: valueColor, NSAttributedString.Key.font: font])
     }
     
     override public var intrinsicContentSize: CGSize {
         return size
     }
 
+    public override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        return nil
+    }
 }
 
 private let YQRedDotNumberTag: Int = 235813
